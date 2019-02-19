@@ -41,8 +41,7 @@ class DebitsList extends Component {
 
 		return(
 			<div className="main-container">
-				<header> <h1>Debits and Credits App</h1> </header>
-				<h2>Debits</h2>
+				<h2>{this.props.section}</h2>
 				<DebitFormComponent />
                 <div>
                     { this.state.debits.map((item) => {

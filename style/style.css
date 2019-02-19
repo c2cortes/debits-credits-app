@@ -57,6 +57,14 @@
     padding: 10px;
 }
 
+.main-container {
+	width: 100%;
+}
+
+.main-title{
+	text-align: center;
+}
+
 .main-container header h1{
 	text-align: center;
 	margin-top: 15px;
