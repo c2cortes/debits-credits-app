@@ -7,7 +7,8 @@ export default class App extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
-                    <h1 className="main-title">Debits / Credits App</h1>
+                        <h1 className="main-title">Debits / Credits App</h1>
+                        <hr/>
                     </div>
                 </div>
 

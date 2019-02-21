@@ -108,7 +108,11 @@
 	float: right;
 }
 
+.movement-amount-label{
+	font-weight: bold;
+}
 
-
-
+.movement-title-list{
+	margin-top: 5px;
+}
 

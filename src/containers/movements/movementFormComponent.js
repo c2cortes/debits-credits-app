@@ -79,7 +79,7 @@ class MovementFormComponent extends Component {
 
 function mapStateToProps(state){
 	return {
-		storeMovementResponse: state.storeMovement
+		storeMovement: state.storeMovement
 	}
 }
 

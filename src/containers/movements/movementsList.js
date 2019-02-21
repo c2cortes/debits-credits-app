@@ -33,9 +33,17 @@ class MovementsList extends Component {
 		return(
 		<div className="card border-dark mb-3">
 			<div className="card-header">
-					<div className="content-form-input">
-						<button onClick={() => this.setState({ showForm: true })} type="button" className="btn btn-primary">Add a new { this.props.type }</button>
+				<div className="row">
+					<div className="col-lg-10 col-md-10 col-sm-10">
+						<h4 className="movement-title-list">{ this.props.type == 'debit' ? 'Debits' : 'Credits' } </h4>
 					</div>
+					<div className="col-lg-2 col-md-2 col-sm-2">
+						<div className="content-form-input">
+							<button onClick={() => this.setState({ showForm: true })} type="button" className="btn btn-primary">+</button>
+						</div>
+					</div>
+				</div>
+					
 			</div>
 		</div>
 		)
@@ -44,7 +52,6 @@ class MovementsList extends Component {
 	render(){
 		return(
 			<div className="main-container">
-				<h2>{ this.props.type == 'debit' ? 'Debits' : 'Credits' } </h2>
 				{ this.renderHeader() }
 				{ this.state.showForm ? <MovementFormComponent type={this.props.type}/> : null }
                 <div>

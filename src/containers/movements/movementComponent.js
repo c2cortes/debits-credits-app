@@ -13,10 +13,10 @@ class MovementComponent extends Component {
 		return <div className="card border-dark mb-3">
 					<div className="card-header">
 						<div className="row">
-							<div className="col-lg-6 col-md-6 col-sm-6">
-								{this.props.item.description}
+							<div className="col-lg-8 col-md-8 col-sm-8 movement-description-label">
+								{this.props.item.description}:
 							</div>
-							<div className="col-lg-6 col-md-6 col-sm-6">
+							<div className="col-lg-4 col-md-4 col-sm-4 movement-amount-label">
 								${this.props.item.amount}
 							</div>
 						</div>
