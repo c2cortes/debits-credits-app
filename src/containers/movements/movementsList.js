@@ -13,7 +13,8 @@ class MovementsList extends Component {
 		
 		this.state = {
 			movements: [],
-			showForm: false
+			showForm: false,
+			movementsAmountsSum: 0
 		}
 	}
 
@@ -26,7 +27,15 @@ class MovementsList extends Component {
 	}
 
 	componentWillReceiveProps(nextProps){
-		this.setState({ movements: nextProps.movements, showForm: false });
+		this.setState({ movements: nextProps.movements, showForm: false, movementsAmountsSum: 0 }, () => this.sumMovementsAmounts());
+	}
+
+	sumMovementsAmounts(){
+		let movementsAmountsSum = this.state.movementsAmountsSum;
+		this.state.movements.map((item) => { 
+			return item.type === this.props.type ? movementsAmountsSum += Number(item.amount) : null 
+		})
+		this.setState({ movementsAmountsSum });
 	}
 
 	renderHeader(){
@@ -49,14 +58,30 @@ class MovementsList extends Component {
 		)
 	}
 
+	renderMovementsSum() {
+		return <div className="card border-dark mb-3">
+					<div className="card-header">
+						<div className="row">
+							<div className="col-lg-8 col-md-8 col-sm-8 movement-description-label">
+								Total:
+							</div>
+							<div className="col-lg-4 col-md-4 col-sm-4 movement-amount-label">
+								${this.state.movementsAmountsSum}
+							</div>
+						</div>
+					</div>
+				</div>
+	}
+
 	render(){
 		return(
 			<div className="main-container">
 				{ this.renderHeader() }
 				{ this.state.showForm ? <MovementFormComponent type={this.props.type}/> : null }
                 <div>
-                    { this.state.movements.map((item) => { return <MovementComponent type={this.props.type}  item={item} onClickDelete={(id) => this.onClickDelete(id)}/> }) }
+                    { this.state.movements.map((item, id) => { return item.type === this.props.type ? <MovementComponent key={id} type={this.props.type}  item={item} onClickDelete={(id) => this.onClickDelete(id)}/> : null }) }
                 </div>
+				{ this.renderMovementsSum() }
 			</div>
 		)
 	}

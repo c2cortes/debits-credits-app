@@ -25,7 +25,7 @@ class MovementComponent extends Component {
 	}
 
 	render() {
-		return (this.props.item.type === this.props.type ? this.renderItem() : null)
+		return (this.renderItem())
 	}
 }
 
