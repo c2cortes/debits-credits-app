@@ -1,11 +1,11 @@
 export const FETCH_MOVEMENTS = 'FETCH_MOVEMENTS';
-export const API_URL = 'http://localhost:3000/';
+export const STORE_MOVEMENT = 'STORE_MOVEMENT';
 
-////////***  Debits Actions  ***/////////
+////////***  Movements Actions  ***/////////
 
 export function fetchMovements(){
 
-	localStorage.setItem('movements', JSON.stringify({ data:[{ concept: 'Client payment', amount: '2000', type: 'debit' }, { concept: 'Dinner', amount: '500', type: 'credit' }] }));
+	//localStorage.setItem('movements', JSON.stringify({ data:[{ concept: 'Client payment', amount: '2000', type: 'debit' }, { concept: 'Dinner', amount: '500', type: 'credit' }] }));
 
 	const request = {  data: JSON.parse(localStorage.getItem('movements')) }
 
@@ -13,6 +13,18 @@ export function fetchMovements(){
 
 	return{
 		type: FETCH_MOVEMENTS,
+		payload: request.data
+	}
+}
+
+export function storeMovement(params){
+	const request = JSON.parse(localStorage.getItem('movements'));
+	request.data.unshift(params);
+
+	localStorage.setItem('movements', JSON.stringify({ data: request.data }));
+
+	return{
+		type: STORE_MOVEMENT,
 		payload: request.data
 	}
 }

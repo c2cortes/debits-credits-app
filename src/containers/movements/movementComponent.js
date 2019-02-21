@@ -3,35 +3,33 @@ import { connect } from 'react-redux';
 
 class MovementComponent extends Component {
 
-	constructor(props){
+	constructor(props) {
 		super(props);
 		this.state = {
 		}
 	}
 
-	renderItem(){
-		return <div
-							className="card border-dark mb-3"
-							id={this.props.id}
-						>
-							<div className="card-header">
-								<div>{this.props.item.concept}</div>
-								<div className="trash-button">
-									{this.state.button}
-								</div>
+	renderItem() {
+		return <div className="card border-dark mb-3">
+					<div className="card-header">
+						<div className="row">
+							<div className="col-lg-6 col-md-6 col-sm-6">
+								{this.props.item.description}
 							</div>
-							<div className="card-body text-dark">
-								{this.state.tasks}
+							<div className="col-lg-6 col-md-6 col-sm-6">
+								${this.props.item.amount}
 							</div>
 						</div>
+					</div>
+				</div>
 	}
 
-	render(){
-		return(this.props.item.type === this.props.type ? this.renderItem() : null)
+	render() {
+		return (this.props.item.type === this.props.type ? this.renderItem() : null)
 	}
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
 	return {}
 }
 

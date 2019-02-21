@@ -26,7 +26,7 @@ class MovementsList extends Component {
 	}
 
 	componentWillReceiveProps(nextProps){
-		this.setState({ movements: nextProps.movements }, () => console.log('new props', nextProps.movements) );
+		this.setState({ movements: nextProps.movements, showForm: false });
 	}
 
 	renderHeader(){
@@ -46,7 +46,7 @@ class MovementsList extends Component {
 			<div className="main-container">
 				<h2>{ this.props.type == 'debit' ? 'Debits' : 'Credits' } </h2>
 				{ this.renderHeader() }
-				{ this.state.showForm ? <MovementFormComponent type={this.props.section}/> : null }
+				{ this.state.showForm ? <MovementFormComponent type={this.props.type}/> : null }
                 <div>
                     { this.state.movements.map((item) => { return <MovementComponent type={this.props.type}  item={item} onClickDelete={(id) => this.onClickDelete(id)}/> }) }
                 </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { storeDebit, fetchDebits } from '../../actions/index';
+import { storeMovement, fetchMovements } from '../../actions/index';
  
 class MovementFormComponent extends Component {
 
@@ -9,26 +9,29 @@ class MovementFormComponent extends Component {
 		super(props);
 
 		this.state = {
-			concept: ''
+			amount: '',
+			description: '',
+			showMessage: false
 		}
 
 		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
 
 	showAlert(message){
-		let messageContent = <div className="alert alert-danger" role="alert">{message}</div>;
-		this.setState({ message: messageContent });
+		this.setState({ message, showMessage: true });
 	}
 
 	onFormSubmit(event){
 		event.preventDefault();
 
-		if(this.state.concept == ''){
-			this.showAlert('Concept is required');
+		if(this.state.amount == ''){
+			this.showAlert('Amount is required');
+		} else if(this.state.description == ''){
+			this.showAlert('Description is required');
 		} else {
-			const params = {concept: this.state.concept };
-			this.props.storeDebit(params);
-			this.setState({ message: '', concept: '' });
+			const params = {amount: this.state.amount, description: this.state.description, type: this.props.type };
+			this.props.storeMovement(params);
+			this.setState({ showMessage: false, amount: '', description: '' }, () => this.props.fetchMovements() );
 		}
 	}
 
@@ -37,31 +40,33 @@ class MovementFormComponent extends Component {
 			<form onSubmit={this.onFormSubmit}>
 				<div className="card border-dark mb-3">
 					<div className="card-header">
-						
+
 							<div className="content-form-input">
 								<input
-									placeholder="Enter the concept of the new debit"
+									placeholder="Amount"
 									className="form-control"
-									value={this.state.concept}
-									onChange={(event) => {this.setState({ concept: event.target.value })}}
+									value={this.state.amount}
+									onChange={(event) => {this.setState({ amount: event.target.value })}}
 								/>
 							</div>
 
 							<div className="content-form-input">
 								<input
-									placeholder="Enter the value of the new debit"
+									placeholder="Description"
 									className="form-control"
-									value={this.state.value}
-									onChange={(event) => {this.setState({ value: event.target.value })}}
+									value={this.state.description}
+									onChange={(event) => {this.setState({ description: event.target.value })}}
 								/>
 							</div>
 
 							<div className="content-form-input">
-								<button onClick={(event) => this.onFormSubmit(event)} type="submit" className="btn btn-primary">Save</button>
+								<div className="movement-submit-button">
+									<button onClick={(event) => this.onFormSubmit(event)} type="submit" className="btn btn-primary">Save</button>
+								</div>
 							</div>
 
 							<div>
-								{this.state.message}
+								{ this.state.message ? <div className="alert alert-danger" role="alert">{this.state.message}</div> : null}
 							</div>
 						
 					</div>
@@ -74,12 +79,12 @@ class MovementFormComponent extends Component {
 
 function mapStateToProps(state){
 	return {
-		storeDebitResponse: state.storeDebit
+		storeMovementResponse: state.storeMovement
 	}
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({ storeDebit, fetchDebits }, dispatch);
+	return bindActionCreators({ storeMovement, fetchMovements }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovementFormComponent)

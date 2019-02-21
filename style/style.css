@@ -77,10 +77,6 @@
 	margin-bottom: 15px;
 }
 
-.cont-new-item-button button.btn.btn-secondary{
-	/*margin: auto;*/
-}
-
 .trash-button{
 	float: right;
 	margin-top: -27px;
@@ -92,14 +88,14 @@
 }
 
 .content-form-input input{
-	width: 86%;
+	width: 100%;
 	float: left;
-	border-radius: 5px 0px 0px 5px;
+	border-radius: 5px;
 }
 
 .content-form-input button{
 	float: left;
-	border-radius: 0px 5px 5px 0px;
+	border-radius: 5px;
 }
 
 .cont-inputs-form input{
@@ -108,7 +104,9 @@
 	margin-left: 12px;
 }
 
-
+.movement-submit-button{
+	float: right;
+}
 
 
 
