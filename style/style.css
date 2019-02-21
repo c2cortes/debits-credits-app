@@ -57,6 +57,14 @@
     padding: 10px;
 }
 
+.main-container {
+	width: 100%;
+}
+
+.main-title{
+	text-align: center;
+}
+
 .main-container header h1{
 	text-align: center;
 	margin-top: 15px;
@@ -67,10 +75,6 @@
 	text-align: center;
 	margin-top: 15px;
 	margin-bottom: 15px;
-}
-
-.cont-new-item-button button.btn.btn-secondary{
-	/*margin: auto;*/
 }
 
 .trash-button{
@@ -84,14 +88,14 @@
 }
 
 .content-form-input input{
-	width: 86%;
+	width: 100%;
 	float: left;
-	border-radius: 5px 0px 0px 5px;
+	border-radius: 5px;
 }
 
 .content-form-input button{
 	float: left;
-	border-radius: 0px 5px 5px 0px;
+	border-radius: 5px;
 }
 
 .cont-inputs-form input{
@@ -100,9 +104,18 @@
 	margin-left: 12px;
 }
 
+.movement-submit-button{
+	float: right;
+}
 
+.movement-amount-label{
+	font-weight: bold;
+}
 
+.movement-title-list{
+	margin-top: 5px;
+}
 
-
-
-
+.card.border-dark.mb-3{
+	margin-left: 0px;
+}
