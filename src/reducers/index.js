@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import Debits from './reducerDebits';
+import Movements from './reducerMovements';
 
 const rootReducer = combineReducers({
-  debits: Debits
+  movements: Movements
 });
 
 export default rootReducer;
