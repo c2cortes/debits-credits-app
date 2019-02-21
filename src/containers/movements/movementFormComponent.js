@@ -43,6 +43,7 @@ class MovementFormComponent extends Component {
 
 							<div className="content-form-input">
 								<input
+									type="number"
 									placeholder="Amount"
 									className="form-control"
 									value={this.state.amount}
