@@ -5,22 +5,22 @@ export const STORE_MOVEMENT = 'STORE_MOVEMENT';
 
 export function fetchMovements(){
 
-	//localStorage.setItem('movements', JSON.stringify({ data:[{ concept: 'Client payment', amount: '2000', type: 'debit' }, { concept: 'Dinner', amount: '500', type: 'credit' }] }));
+	let request = {  data: JSON.parse(localStorage.getItem('movements')) }
 
-	const request = {  data: JSON.parse(localStorage.getItem('movements')) }
-
-	console.log('request => ', request)
+	if(request.data == null || request.data == undefined) {
+		localStorage.setItem('movements', JSON.stringify({ data:[] }));
+		request = {  data: JSON.parse(localStorage.getItem('movements')) }
+	}
 
 	return{
 		type: FETCH_MOVEMENTS,
-		payload: request.data
+		payload: request.data ? request.data : []
 	}
 }
 
 export function storeMovement(params){
 	const request = JSON.parse(localStorage.getItem('movements'));
 	request.data.unshift(params);
-
 	localStorage.setItem('movements', JSON.stringify({ data: request.data }));
 
 	return{

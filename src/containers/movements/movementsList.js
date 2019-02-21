@@ -59,8 +59,7 @@ class MovementsList extends Component {
 	}
 
 	renderMovementsSum() {
-		return <div className="card border-dark mb-3">
-					<div className="card-header">
+		return <div className={ this.props.type == 'debit' ? 'alert alert-success' : 'alert alert-danger' } role="alert">
 						<div className="row">
 							<div className="col-lg-8 col-md-8 col-sm-8 movement-description-label">
 								Total:
@@ -69,7 +68,6 @@ class MovementsList extends Component {
 								${this.state.movementsAmountsSum}
 							</div>
 						</div>
-					</div>
 				</div>
 	}
 
